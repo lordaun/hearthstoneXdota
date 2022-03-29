@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+	</title>
+</head>
+<body>
+	<div style="height: 950px; width: 1900px;background-image: url(mid.png); background-size: 100% 100%;">
+	<button class="btn" style="position: absolute; margin-top: 400px; margin-left:900px">
+		Атака
+	</button>
+	<div class="storm" style="width: 300px; height: 200px; background-size: 100% 100%; position: absolute; margin-top: 125px; margin-left: 1050px;">
+		<h1>Здоровье <span class="hp_s"></span></h1>
+		<h1>Атака <span class="att_s"></span></h1>
+	</div>
+	<div class="sf" style="width: 300px; height:200px; background-size: 100% 100%; color: red;position: absolute; margin-top: 500px; margin-left: 500px;">
+		<h1>Здоровье <span class="hp_sf"></span></h1>
+		<h1>Атака <span class="att_sf"></span></h1>
+	</div>
+	</div>
+	<script type="text/javascript">
+		let storm = document.querySelector(".storm");
+		let sf = document.querySelector(".sf");
+
+		let hp_s = document.querySelector(".hp_s");
+		let hp_sf = document.querySelector(".hp_sf");
+
+		let att_s = document.querySelector(".att_s");
+		let att_sf = document.querySelector(".att_sf");
+		let btn = document.querySelector(".btn");
+
+		let randomizer = function() {
+			let random = Math.random() * 100 + 1;;
+			let round = Math.round(random);
+			return round
+		}
+
+		let user = {
+			name : "Storm Spirit",
+			url : "url(storm.jpg)", 
+			hp : randomizer(),
+			dmg : randomizer()
+		}
+
+		let enemy = {
+			name : "Shadow Fiend",
+			url : "url(sf.jpg)", 
+			hp : randomizer(),
+			dmg : randomizer()
+		}
+
+		storm.style.backgroundImage = user.url;
+		sf.style.backgroundImage = enemy.url;
+
+		hp_s.innerHTML = user.hp;
+		hp_sf.innerHTML = enemy.hp;
+
+		att_s.innerHTML = user.dmg;
+		att_sf.innerHTML = enemy.dmg;
+
+		btn.onclick = function() {
+			user.hp = user.hp - enemy.dmg;
+			hp_s.innerHTML = user.hp;
+			enemy.hp = enemy.hp - user.dmg;
+			hp_sf.innerHTML = enemy.hp;
+			if(user.hp<0){
+				alert('Shadow Fiend выиграл мид')
+			}
+			if(enemy.hp<0){
+				alert('Storm Spirit выиграл мид')
+			}
+		}
+	</script>
+</body>
+</html>
